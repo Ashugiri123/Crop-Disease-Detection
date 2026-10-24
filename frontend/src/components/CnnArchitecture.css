@@ -1,0 +1,147 @@
+/* ============================================================
+   CNN ARCHITECTURE SECTION — Charcoal & Ash Technical Plate
+   ============================================================ */
+
+.cnn-arch-section {
+  padding: 4.5rem 0;
+  border-top: 1px solid var(--outline-variant);
+  position: relative;
+  z-index: 10;
+}
+
+.arch-plate-card {
+  background: var(--surface-container-low);
+  border: 1px solid var(--outline);
+  border-radius: 8px;
+  padding: 1.5rem;
+  backdrop-filter: blur(16px);
+}
+
+@media (min-width: 1024px) {
+  .arch-plate-card {
+    padding: 2.25rem;
+  }
+}
+
+.arch-header-row {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--outline-variant);
+}
+
+@media (min-width: 1024px) {
+  .arch-header-row {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+}
+
+.arch-title {
+  font-size: clamp(1.75rem, 3.2vw, 2.35rem);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.arch-desc {
+  margin-top: 0.5rem;
+  max-width: 600px;
+  line-height: 1.6;
+}
+
+.arch-benchmarks {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.benchmark-box {
+  background: var(--surface-container);
+  border: 1px solid var(--outline-variant);
+  border-radius: 4px;
+  padding: 8px 14px;
+}
+
+/* 8-Node Architecture Flow Grid */
+.arch-diagram-flow {
+  padding: 1.75rem 0;
+  overflow-x: auto;
+}
+
+.flow-inner-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+}
+
+@media (min-width: 640px) {
+  .flow-inner-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .flow-inner-grid {
+    grid-template-columns: repeat(8, 1fr);
+    gap: 0.5rem;
+  }
+}
+
+.arch-node-card {
+  background: var(--surface-container);
+  border: 1px solid var(--outline-variant);
+  border-radius: 4px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.2s ease;
+}
+
+.arch-node-card:hover {
+  background: var(--surface-container-high);
+  border-color: var(--outline);
+  transform: translateY(-2px);
+}
+
+.node-step {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.node-input  { border-top: 2px solid var(--ash-300); }
+.node-conv   { border-top: 2px solid var(--secondary); }
+.node-pool   { border-top: 2px solid var(--ash-400); }
+.node-dense  { border-top: 2px solid var(--ash-200); }
+.node-output { border-top: 2px solid var(--primary); box-shadow: 0 0 16px -6px rgba(61, 214, 109, 0.4); }
+
+/* Specs Strip */
+.arch-specs-strip {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--outline-variant);
+}
+
+@media (min-width: 640px) {
+  .arch-specs-strip {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .arch-specs-strip {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.spec-metric {
+  background: var(--surface-container);
+  border: 1px solid var(--outline-variant);
+  border-radius: 4px;
+  padding: 8px 12px;
+}

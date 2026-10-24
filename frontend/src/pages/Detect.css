@@ -1,0 +1,123 @@
+/* ============================================================
+   DETECT PAGE — Charcoal & Ash Workbench
+   ============================================================ */
+
+.stitch-detect-page {
+  padding-bottom: 5rem;
+  position: relative;
+  z-index: 10;
+}
+
+.detect-header-banner {
+  padding: 2.5rem 0 1.5rem;
+  background: linear-gradient(180deg, var(--surface-container-high) 0%, var(--surface) 100%);
+  border-bottom: 1px solid var(--outline-variant);
+  margin-bottom: 1rem;
+}
+
+.detect-eyebrow {
+  color: var(--primary);
+  letter-spacing: 0.15em;
+  margin-bottom: 0.25rem;
+}
+
+.detect-title {
+  font-size: clamp(2rem, 3.8vw, 3rem);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.detect-subtitle {
+  max-width: 48rem;
+  margin-top: 0.5rem;
+  line-height: 1.6;
+}
+
+.detect-result-banner {
+  margin-top: 1.25rem;
+  padding: 10px 14px;
+  background: var(--surface-container);
+  border: 1px solid var(--primary);
+  border-radius: 4px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+  box-shadow: 0 0 20px -5px rgba(61, 214, 109, 0.3);
+}
+
+.banner-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--primary);
+}
+
+.view-dossier-btn {
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+
+.view-dossier-btn:hover {
+  color: var(--ash-50);
+  text-decoration: underline;
+}
+
+.detect-protocols-section {
+  padding: 3rem 0 1rem;
+}
+
+.protocols-card {
+  padding: 1.75rem;
+  border-radius: 6px;
+  background: var(--surface-container-low);
+  border: 1px solid var(--outline);
+}
+
+.protocols-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 1.25rem;
+  letter-spacing: 0.08em;
+}
+
+.protocols-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .protocols-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.protocol-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.protocol-num {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--primary);
+  line-height: 1;
+  margin-top: 2px;
+}
+
+.protocol-name {
+  display: block;
+  margin-bottom: 4px;
+  letter-spacing: 0.06em;
+}
+
+.protocol-desc {
+  line-height: 1.5;
+}

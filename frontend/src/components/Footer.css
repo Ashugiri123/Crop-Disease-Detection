@@ -1,0 +1,120 @@
+/* ============================================================
+   FOOTER — Charcoal & Ash Laboratory Telemetry Footer
+   ============================================================ */
+
+.stitch-footer {
+  background: var(--surface-container-lowest);
+  border-top: 1px solid var(--outline-variant);
+  position: relative;
+  z-index: 10;
+}
+
+.stitch-footer-inner {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+@media (min-width: 1024px) {
+  .stitch-footer-inner {
+    padding: 3.5rem 3rem;
+  }
+}
+
+.footer-top-row {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--outline-variant);
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .footer-top-row {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+.footer-brand-title {
+  font-family: var(--font-headline);
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--on-surface);
+  display: block;
+}
+
+.footer-brand-subtitle {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  color: var(--ash-400);
+  display: block;
+  margin-top: 3px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.footer-links-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.footer-links-nav a {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.09em;
+  color: var(--on-surface-variant);
+  transition: color 0.15s ease;
+}
+
+.footer-links-nav a:hover {
+  color: var(--on-surface);
+}
+
+.footer-bottom-row {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+@media (min-width: 1024px) {
+  .footer-bottom-row {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+.footer-coords-text {
+  font-family: var(--font-body);
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--ash-400);
+  max-width: 54rem;
+}
+
+.footer-health-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--primary);
+  flex-shrink: 0;
+  letter-spacing: 0.08em;
+}
+
+.health-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--primary);
+  box-shadow: 0 0 8px var(--primary);
+}

@@ -1,0 +1,283 @@
+/* ============================================================
+   ABOUT / AI ARCHITECTURE — Charcoal & Ash Research Laboratory
+   ============================================================ */
+
+.stitch-about-page {
+  padding: 3rem 0 5rem;
+  position: relative;
+  z-index: 10;
+}
+
+.about-header-block {
+  max-width: 48rem;
+  margin-bottom: 2.5rem;
+}
+
+.about-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--primary);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.about-title {
+  font-family: var(--font-headline);
+  font-size: clamp(2rem, 3.8vw, 3rem);
+  font-weight: 400;
+  color: var(--on-surface);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+.about-desc {
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: var(--on-surface-variant);
+  margin-top: 0.75rem;
+  line-height: 1.6;
+}
+
+/* Evaluation Truth Plate */
+.eval-truth-plate {
+  border-radius: 8px;
+  background: linear-gradient(180deg, var(--surface-container-high) 0%, var(--surface-container-lowest) 100%);
+  border: 1px solid var(--outline);
+  padding: 1.5rem;
+  margin-bottom: 2.5rem;
+  box-shadow: 0 20px 50px -15px rgba(0, 0, 0, 0.9);
+}
+
+@media (min-width: 1024px) {
+  .eval-truth-plate {
+    padding: 2.5rem;
+  }
+}
+
+.eval-plate-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--outline-variant);
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.eval-cert-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  color: var(--primary);
+  letter-spacing: 0.08em;
+  font-weight: 600;
+}
+
+.cert-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--primary);
+  box-shadow: 0 0 8px var(--primary);
+}
+
+.eval-timestamp {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--ash-400);
+  letter-spacing: 0.08em;
+}
+
+.eval-plate-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .eval-plate-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.eval-stat-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.eval-stat-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--ash-400);
+  letter-spacing: 0.1em;
+}
+
+.eval-stat-number {
+  font-family: var(--font-mono);
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-top: 4px;
+}
+
+.eval-stat-desc {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--on-surface-variant);
+  margin-top: 4px;
+}
+
+.about-arch-embed {
+  margin-bottom: 2.5rem;
+}
+
+/* Methodology Story Panels */
+.methodology-story-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin-bottom: 2.5rem;
+}
+
+@media (min-width: 1024px) {
+  .methodology-story-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.story-panel {
+  background: var(--surface-container-low);
+  border: 1px solid var(--outline);
+  border-radius: 6px;
+  padding: 1.75rem;
+}
+
+.story-panel-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 1.25rem;
+}
+
+.story-title {
+  font-family: var(--font-headline);
+  font-size: 1.35rem;
+  font-weight: 400;
+  color: var(--on-surface);
+}
+
+.story-para {
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--on-surface-variant);
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.story-para:last-child {
+  margin-bottom: 0;
+}
+
+.story-para strong {
+  color: var(--on-surface);
+}
+
+.story-para code {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--secondary);
+  background: var(--surface-container-highest);
+  padding: 2px 6px;
+  border-radius: 3px;
+}
+
+.story-metrics-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ash-300);
+  margin-top: 1rem;
+  padding-left: 0;
+}
+
+.story-metrics-list li {
+  padding-left: 12px;
+  position: relative;
+}
+
+.story-metrics-list li::before {
+  content: "▪";
+  position: absolute;
+  left: 0;
+  color: var(--primary);
+}
+
+.story-metrics-list strong {
+  color: var(--on-surface);
+}
+
+/* Matrix Table */
+.specs-matrix-card {
+  background: var(--surface-container-low);
+  border: 1px solid var(--outline);
+  border-radius: 6px;
+  padding: 1.5rem;
+}
+
+.specs-matrix-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--outline-variant);
+  margin-bottom: 1.25rem;
+}
+
+.matrix-title {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ash-300);
+  letter-spacing: 0.12em;
+}
+
+.matrix-badge {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--primary);
+}
+
+.specs-matrix-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.matrix-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  background: var(--surface-container);
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.matrix-label {
+  color: var(--ash-400);
+  letter-spacing: 0.08em;
+}
+
+.matrix-val {
+  color: var(--on-surface);
+  font-weight: 500;
+}

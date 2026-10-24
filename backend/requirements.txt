@@ -1,0 +1,15 @@
+# Crop Disease Detection Backend Dependencies
+# Python runtime: Python 3.11 (tfenv)
+
+# Core ML and Numerical Inference
+tensorflow==2.21.0
+keras==3.14.1
+numpy==2.4.6
+pillow==12.2.0
+
+# API and Web Server
+fastapi==0.142.2
+uvicorn==0.54.0
+python-multipart==0.0.32
+pydantic==2.13.4
+starlette==1.7.0

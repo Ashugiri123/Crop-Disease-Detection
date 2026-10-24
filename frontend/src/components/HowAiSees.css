@@ -1,0 +1,349 @@
+/* ============================================================
+   HOW AI SEES SECTION — 6-Stage CNN Feature Map Visualizer
+   ============================================================ */
+
+.how-ai-sees-section {
+  padding: 4.5rem 0;
+  border-top: 1px solid var(--outline-variant);
+  position: relative;
+  z-index: 10;
+}
+
+.how-header {
+  margin-bottom: 2rem;
+  max-width: 680px;
+}
+
+.how-title {
+  font-size: clamp(1.75rem, 3.2vw, 2.35rem);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin-top: 0.25rem;
+}
+
+.how-subtitle {
+  margin-top: 0.5rem;
+  line-height: 1.6;
+}
+
+/* 6-Stage Pill Bar */
+.how-stage-pills {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding-bottom: 0.75rem;
+  margin-bottom: 1.5rem;
+  scrollbar-width: thin;
+}
+
+.stage-pill-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 8px 14px;
+  background: var(--surface-container);
+  border: 1px solid var(--outline-variant);
+  border-radius: 4px;
+  min-width: 140px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.stage-pill-btn:hover {
+  background: var(--surface-container-high);
+  border-color: var(--outline);
+}
+
+.stage-pill-btn.pill-active {
+  background: var(--surface-container-highest);
+  border-color: var(--secondary);
+  box-shadow: 0 0 16px -4px rgba(162, 226, 52, 0.35);
+}
+
+.stage-pill-btn.pill-active .pill-name {
+  color: var(--on-surface);
+}
+
+.pill-step {
+  letter-spacing: 0.1em;
+}
+
+.pill-name {
+  color: var(--on-surface-variant);
+  margin-top: 2px;
+}
+
+/* Arena Grid */
+.how-stage-arena {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  align-items: stretch;
+}
+
+@media (min-width: 1024px) {
+  .how-stage-arena {
+    grid-template-columns: 1.2fr 1fr;
+    gap: 2rem;
+  }
+}
+
+/* Left: Feature Map Plate */
+.arena-visual-plate {
+  background: var(--surface-container-low);
+  border: 1px solid var(--outline);
+  border-radius: 6px;
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+}
+
+.plate-top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  background: var(--surface-container);
+  border-bottom: 1px solid var(--outline-variant);
+  border-radius: 4px 4px 0 0;
+}
+
+.dot-stage-indicator {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--secondary);
+  box-shadow: 0 0 6px var(--secondary);
+}
+
+.feature-map-viewport {
+  position: relative;
+  height: 380px;
+  border-radius: 0 0 4px 4px;
+  overflow: hidden;
+  background: var(--surface-container-lowest);
+  flex-grow: 1;
+}
+
+@media (min-width: 768px) {
+  .feature-map-viewport {
+    height: 420px;
+  }
+}
+
+.feature-map-canvas {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.feature-base-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: filter 0.3s ease;
+}
+
+/* Filter styles based on CNN stage */
+.filter-raw .feature-base-img {
+  filter: contrast(110%) brightness(95%);
+}
+
+.filter-edges .feature-base-img {
+  filter: grayscale(100%) invert(80%) contrast(250%) brightness(60%);
+}
+
+.filter-texture .feature-base-img {
+  filter: grayscale(90%) contrast(190%) brightness(75%);
+}
+
+.filter-lesions .feature-base-img {
+  filter: grayscale(85%) contrast(220%) brightness(70%);
+}
+
+.filter-latent .feature-base-img {
+  filter: grayscale(100%) blur(2px) contrast(150%) brightness(50%);
+}
+
+.filter-output .feature-base-img {
+  filter: grayscale(60%) contrast(130%) brightness(85%);
+}
+
+/* Algorithmic Convolution Matrix Grid Overlay */
+.kernel-grid-overlay {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(to right, rgba(154, 163, 173, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(154, 163, 173, 0.08) 1px, transparent 1px);
+  background-size: 24px 24px;
+  pointer-events: none;
+}
+
+/* Active Region Halos (Green Bioluminescent Attention) */
+.active-feature-halo {
+  position: absolute;
+  pointer-events: none;
+  z-index: 6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.halo-raw {
+  top: 45%; left: 45%;
+  width: 80px; height: 80px;
+}
+
+.halo-edges {
+  top: 30%; left: 25%;
+  width: 120px; height: 120px;
+}
+
+.halo-texture {
+  top: 40%; left: 50%;
+  width: 140px; height: 140px;
+}
+
+.halo-lesions {
+  top: 35%; left: 35%;
+  width: 150px; height: 150px;
+}
+
+.halo-latent {
+  top: 25%; left: 25%;
+  width: 220px; height: 220px;
+}
+
+.halo-output {
+  top: 35%; left: 35%;
+  width: 160px; height: 160px;
+}
+
+.halo-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px dashed rgba(61, 214, 109, 0.65);
+}
+
+.ring-1 {
+  width: 100%;
+  height: 100%;
+  animation: ringRotateCW 20s linear infinite;
+}
+
+.ring-2 {
+  width: 70%;
+  height: 70%;
+  border-style: solid;
+  border-color: rgba(162, 226, 52, 0.5);
+  animation: ringRotateCCW 15s linear infinite;
+}
+
+.halo-center-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--primary);
+  box-shadow: 0 0 12px var(--primary);
+}
+
+.feature-scan-line {
+  position: absolute;
+  left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--secondary) 50%, transparent);
+  box-shadow: 0 0 12px var(--secondary);
+  pointer-events: none;
+  z-index: 5;
+}
+
+.feature-coords-overlay {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  right: 8px;
+  display: flex;
+  justify-content: space-between;
+  color: var(--ash-300);
+  background: rgba(9, 11, 13, 0.88);
+  padding: 3px 8px;
+  border-radius: 2px;
+}
+
+/* Right: Technical Explanation Card */
+.arena-specs-card {
+  background: var(--surface-container-low);
+  border: 1px solid var(--outline);
+  border-radius: 6px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.specs-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--outline-variant);
+  letter-spacing: 0.08em;
+}
+
+.specs-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding-top: 1rem;
+}
+
+.tensor-spec-grid {
+  background: var(--surface-container);
+  border: 1px solid var(--outline-variant);
+  border-radius: 4px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.spec-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.spec-row:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.specs-action-bar {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 0.5rem;
+}
+
+.step-btn {
+  padding: 8px 12px;
+  border: 1px solid var(--outline-variant);
+  background: var(--surface-container);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.step-btn:hover:not(:disabled) {
+  border-color: var(--outline);
+  background: var(--surface-container-high);
+}
+
+.step-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}

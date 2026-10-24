@@ -1,0 +1,337 @@
+/* ============================================================
+   RESULT PAGE — Charcoal & Ash Laboratory Diagnostic Dossier
+   ============================================================ */
+
+.stitch-result-page {
+  padding: 2.5rem 0 5rem;
+  position: relative;
+  z-index: 10;
+}
+
+.result-top-breadcrumb {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.breadcrumb-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--on-surface-variant);
+  transition: color 0.15s ease;
+}
+
+.breadcrumb-back-btn:hover {
+  color: var(--on-surface);
+}
+
+.result-verified-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  background: var(--surface-container);
+  border: 1px solid var(--primary);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--primary);
+  letter-spacing: 0.1em;
+  box-shadow: 0 0 16px -4px rgba(61, 214, 109, 0.35);
+}
+
+.badge-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--primary);
+}
+
+/* 2-Column Grid */
+.result-dossier-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+@media (min-width: 1024px) {
+  .result-dossier-grid {
+    grid-template-columns: 1.25fr 1fr;
+  }
+}
+
+/* Left Specimen Frame */
+.result-specimen-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.result-plate-frame {
+  background: var(--surface-container-low);
+  border-radius: 6px;
+  border: 1px solid var(--outline);
+  overflow: hidden;
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.9);
+}
+
+.result-plate-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 16px;
+  background: var(--surface-container);
+  border-bottom: 1px solid var(--outline-variant);
+}
+
+.result-viewport-box {
+  position: relative;
+  height: 480px;
+  width: 100%;
+  overflow: hidden;
+  background: var(--surface-container-lowest);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.result-viewport-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(70%) contrast(125%) brightness(88%);
+}
+
+.result-reticle-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.reticle-target-box {
+  position: relative;
+  width: 220px;
+  height: 220px;
+  border: 1px dashed var(--secondary);
+  background: rgba(162, 226, 52, 0.06);
+}
+
+.bracket-tl { position: absolute; top: -1px; left: -1px; width: 12px; height: 12px; border-top: 2px solid var(--secondary); border-left: 2px solid var(--secondary); }
+.bracket-tr { position: absolute; top: -1px; right: -1px; width: 12px; height: 12px; border-top: 2px solid var(--secondary); border-right: 2px solid var(--secondary); }
+.bracket-bl { position: absolute; bottom: -1px; left: -1px; width: 12px; height: 12px; border-bottom: 2px solid var(--secondary); border-left: 2px solid var(--secondary); }
+.bracket-br { position: absolute; bottom: -1px; right: -1px; width: 12px; height: 12px; border-bottom: 2px solid var(--secondary); border-right: 2px solid var(--secondary); }
+
+.target-tag {
+  position: absolute;
+  top: -24px;
+  left: 0;
+  background: rgba(9, 11, 13, 0.94);
+  padding: 2px 8px;
+  border: 1px solid var(--outline);
+  color: var(--secondary);
+}
+
+.result-viewport-footer-coords {
+  position: absolute;
+  bottom: 10px;
+  left: 12px;
+  right: 12px;
+  display: flex;
+  justify-content: space-between;
+  color: var(--ash-300);
+  background: rgba(9, 11, 13, 0.88);
+  padding: 4px 10px;
+  border-radius: 2px;
+}
+
+.result-plate-actions {
+  padding: 16px;
+  background: var(--surface-container);
+  border-top: 1px solid var(--outline-variant);
+}
+
+.result-analyze-another-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 12px;
+  background: var(--primary);
+  color: var(--on-primary);
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  border-radius: 4px;
+  box-shadow: 0 0 25px rgba(61, 214, 109, 0.4);
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.result-analyze-another-cta:hover {
+  background: var(--secondary);
+  color: var(--on-secondary);
+  box-shadow: 0 0 35px rgba(162, 226, 52, 0.6);
+}
+
+/* Right Diagnostic Column */
+.result-diagnostic-col {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.pathology-report-card {
+  background: var(--surface-container-low);
+  border: 1px solid var(--outline);
+  border-radius: 6px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.pathology-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--outline-variant);
+  letter-spacing: 0.08em;
+}
+
+.pathology-meta-block {
+  border-bottom: 1px solid var(--outline-variant);
+  padding-bottom: 1rem;
+}
+
+.pathology-pathogen-block {
+  border-bottom: 1px solid var(--outline-variant);
+  padding-bottom: 1rem;
+}
+
+.confidence-gauge-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.gauge-segmented-bar {
+  display: flex;
+  gap: 3px;
+  height: 10px;
+  background: var(--surface-container-lowest);
+  border: 1px solid var(--outline-variant);
+  border-radius: 2px;
+  padding: 1px;
+}
+
+.gauge-segment {
+  flex: 1;
+  border-radius: 1px;
+}
+
+.seg-healthy  { background: var(--primary); box-shadow: 0 0 6px var(--primary); }
+.seg-diseased { background: var(--secondary); box-shadow: 0 0 6px var(--secondary); }
+.seg-inactive { background: rgba(255, 255, 255, 0.05); }
+
+.quarantine-status-pill {
+  padding: 8px 12px;
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.status-nominal {
+  background: rgba(61, 214, 109, 0.08);
+  border: 1px solid rgba(61, 214, 109, 0.4);
+  color: var(--primary);
+}
+
+.status-danger {
+  background: rgba(255, 107, 122, 0.08);
+  border: 1px solid rgba(255, 107, 122, 0.4);
+  color: var(--tertiary);
+}
+
+.status-pulse-light {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+/* Differential Distribution */
+.differential-dist-card {
+  background: var(--surface-container-low);
+  border: 1px solid var(--outline);
+  border-radius: 6px;
+  padding: 1.5rem;
+}
+
+.diff-bar-track {
+  width: 100%;
+  height: 5px;
+  background: var(--surface-container-lowest);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.diff-bar-fill {
+  height: 100%;
+  border-radius: 2px;
+}
+
+.fill-top { background: var(--primary); }
+.fill-sub { background: var(--ash-500); }
+
+.agronomy-rec-footer {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--outline-variant);
+}
+
+.rec-link-cta {
+  transition: color 0.15s ease;
+}
+
+.rec-link-cta:hover {
+  color: var(--secondary);
+}
+
+/* Demo Notice Banner */
+.demo-notice-banner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  background: var(--surface-container);
+  border: 1px dashed var(--outline);
+  border-radius: 4px;
+  color: var(--ash-200);
+}
+
+.demo-notice-cta:hover {
+  color: var(--secondary);
+}
+
+/* Educational Disclaimer Badge */
+.edu-disclaimer-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  background: rgba(162, 226, 52, 0.08);
+  border: 1px solid rgba(162, 226, 52, 0.3);
+  border-radius: 2px;
+}
+

@@ -1,0 +1,134 @@
+.stitch-pipeline-section {
+  padding: 5rem 1.5rem;
+  max-width: 1280px;
+  margin: 0 auto;
+  border-top: 1px solid rgba(61, 74, 61, 0.35);
+  position: relative;
+  z-index: 10;
+}
+
+@media (min-width: 1024px) {
+  .stitch-pipeline-section {
+    padding: 5rem 3rem;
+  }
+}
+
+.pipeline-header-block {
+  max-width: 42rem;
+  margin-bottom: 4rem;
+}
+
+.pipeline-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--primary);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  animation: labelShimmer 8s linear infinite;
+}
+
+.pipeline-title {
+  font-family: var(--font-headline);
+  font-size: clamp(2rem, 3.5vw, 2.5rem);
+  color: var(--on-surface);
+  line-height: 1.15;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+.pipeline-desc {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--on-surface-variant);
+  margin-top: 0.75rem;
+  line-height: 1.6;
+}
+
+.pipeline-cards-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .pipeline-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .pipeline-cards-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.pipeline-stage-card {
+  padding: 1.5rem;
+  border-radius: var(--radius-lg);
+  background: rgba(15, 31, 21, 0.6);
+  border: 1px solid rgba(61, 74, 61, 0.4);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.2s ease, background 0.2s ease;
+  backdrop-filter: blur(8px);
+}
+
+.pipeline-stage-card:hover {
+  border-color: rgba(75, 226, 119, 0.45);
+  box-shadow: 0 0 30px -10px rgba(75, 226, 119, 0.3), inset 0 1px 0 rgba(75, 226, 119, 0.06);
+  transform: translateY(-3px);
+  background: rgba(15, 31, 21, 0.85);
+}
+
+.stage-top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.stage-step-num {
+  font-family: var(--font-mono);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary);
+  transition: color 0.2s ease;
+}
+
+.pipeline-stage-card:hover .stage-step-num {
+  color: var(--secondary);
+}
+
+.stage-icon {
+  font-size: 22px;
+  color: var(--primary);
+}
+
+.stage-card-title {
+  font-family: var(--font-headline);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--on-surface);
+  letter-spacing: -0.01em;
+  margin-bottom: 0.5rem;
+}
+
+.stage-card-desc {
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: var(--on-surface-variant);
+  line-height: 1.55;
+}
+
+.stage-card-footer {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(61, 74, 61, 0.3);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--outline);
+  letter-spacing: 0.08em;
+  animation: labelShimmer 10s linear infinite;
+}

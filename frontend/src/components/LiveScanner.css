@@ -1,0 +1,564 @@
+/* ============================================================
+   LIVE SCANNER SECTION — Charcoal & Ash Laboratory Workbench
+   ============================================================ */
+
+.live-scanner-container {
+  width: 100%;
+  position: relative;
+  z-index: 10;
+}
+
+.scanner-stage-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  align-items: stretch;
+}
+
+@media (min-width: 1024px) {
+  .scanner-stage-grid {
+    grid-template-columns: 1.35fr 1fr;
+    gap: 2rem;
+  }
+}
+
+/* Viewport Column */
+.scanner-frame-card {
+  background: var(--surface-container-low);
+  border: 1px solid var(--outline);
+  border-radius: 6px;
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.scanner-top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  background: var(--surface-container);
+  border-bottom: 1px solid var(--outline-variant);
+  border-radius: 4px 4px 0 0;
+}
+
+.scanner-status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--primary);
+  box-shadow: 0 0 8px var(--primary);
+}
+
+.scanner-viewport-lens {
+  position: relative;
+  height: 380px;
+  border-radius: 0 0 4px 4px;
+  overflow: hidden;
+  background: var(--surface-container-lowest);
+  border: 1px solid transparent;
+  transition: border-color 0.2s ease;
+}
+
+@media (min-width: 768px) {
+  .scanner-viewport-lens {
+    height: 440px;
+  }
+}
+
+.scanner-viewport-lens.drag-target-active {
+  border-color: var(--primary);
+  box-shadow: inset 0 0 24px rgba(61, 214, 109, 0.3);
+}
+
+.scanner-leaf-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(75%) contrast(125%) brightness(84%);
+  transition: filter 0.3s ease;
+}
+
+.scanner-ash-wash {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(9, 11, 13, 0.2) 0%, rgba(9, 11, 13, 0.7) 100%);
+  pointer-events: none;
+}
+
+/* Laser Beam */
+.scanner-laser-beam {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--primary) 50%, transparent);
+  box-shadow: 0 0 14px var(--primary);
+  pointer-events: none;
+  z-index: 6;
+}
+
+.scanner-laser-beam.laser-fast {
+  animation: foliarScanBeam 1.2s ease-in-out infinite alternate;
+}
+
+.laser-status-tag {
+  position: absolute;
+  right: 14px;
+  top: -16px;
+  color: var(--primary);
+  background: rgba(9, 11, 13, 0.9);
+  padding: 1px 6px;
+  border: 1px solid rgba(61, 214, 109, 0.4);
+  border-radius: 2px;
+}
+
+/* Reticle Overlay */
+.scanner-reticle-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 8;
+}
+
+.reticle-box {
+  width: 180px;
+  height: 160px;
+  border: 1px dashed rgba(162, 226, 52, 0.75);
+  background: rgba(162, 226, 52, 0.05);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 6px;
+}
+
+.b-corner {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-color: var(--secondary);
+  border-style: solid;
+}
+
+.bc-tl { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
+.bc-tr { top: -1px; right: -1px; border-width: 2px 2px 0 0; }
+.bc-bl { bottom: -1px; left: -1px; border-width: 0 0 2px 2px; }
+.bc-br { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
+
+.reticle-label {
+  background: rgba(9, 11, 13, 0.94);
+  border: 1px solid rgba(162, 226, 52, 0.4);
+  padding: 2px 6px;
+  border-radius: 2px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.drag-drop-curtain {
+  position: absolute;
+  inset: 0;
+  background: rgba(9, 11, 13, 0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary);
+  letter-spacing: 0.12em;
+  z-index: 20;
+}
+
+.viewport-coords-footer {
+  position: absolute;
+  bottom: 8px;
+  left: 10px;
+  right: 10px;
+  display: flex;
+  justify-content: space-between;
+  color: var(--ash-400);
+  background: rgba(9, 11, 13, 0.85);
+  padding: 2px 8px;
+  border-radius: 2px;
+  pointer-events: none;
+}
+
+/* Controls Bar */
+.scanner-controls-bar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 12px;
+  background: var(--surface-container);
+  border-top: 1px solid var(--outline-variant);
+  border-bottom: 1px solid var(--outline-variant);
+  gap: 0.75rem;
+  margin-top: 6px;
+}
+
+.controls-left {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.ctrl-toggle-btn {
+  padding: 6px 12px;
+  background: var(--surface-container-high);
+  border: 1px solid var(--outline-variant);
+  border-radius: 3px;
+  color: var(--ash-300);
+  transition: all 0.2s ease;
+}
+
+.ctrl-toggle-btn.ctrl-active {
+  color: var(--primary);
+  border-color: rgba(61, 214, 109, 0.5);
+  background: rgba(61, 214, 109, 0.08);
+}
+
+.ctrl-upload-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: var(--surface-container-high);
+  border: 1px solid var(--outline-variant);
+  border-radius: 3px;
+  color: var(--on-surface-variant);
+  transition: all 0.2s ease;
+}
+
+.ctrl-upload-btn:hover {
+  border-color: var(--outline);
+  color: var(--on-surface);
+}
+
+.scanner-infer-trigger-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: var(--surface-container-highest);
+  border: 1px solid var(--primary);
+  border-radius: 4px;
+  color: var(--primary);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  box-shadow: 0 0 18px -4px rgba(61, 214, 109, 0.35);
+  transition: all 0.2s ease;
+}
+
+.scanner-infer-trigger-btn:hover:not(:disabled) {
+  background: var(--primary);
+  color: var(--on-primary);
+  box-shadow: 0 0 26px -2px rgba(61, 214, 109, 0.65);
+  transform: translateY(-1px);
+}
+
+.scanner-infer-trigger-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Sample Picker */
+.scanner-sample-picker {
+  padding: 10px 12px 6px;
+}
+
+.sample-buttons-row {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.sample-leaf-btn {
+  padding: 5px 10px;
+  background: var(--surface-container);
+  border: 1px solid var(--outline-variant);
+  border-radius: 3px;
+  color: var(--ash-300);
+  transition: all 0.15s ease;
+}
+
+.sample-leaf-btn:hover {
+  background: var(--surface-container-high);
+  color: var(--on-surface);
+}
+
+.sample-leaf-btn.sample-active {
+  border-color: var(--secondary);
+  color: var(--secondary);
+  background: rgba(162, 226, 52, 0.08);
+}
+
+.scanner-error-banner {
+  margin: 6px 12px 10px;
+  padding: 8px 12px;
+  background: rgba(255, 107, 122, 0.1);
+  border: 1px solid var(--tertiary);
+  border-radius: 4px;
+  color: var(--tertiary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Telemetry Dossier Card */
+.telemetry-dossier-card {
+  background: var(--surface-container-low);
+  border: 1px solid var(--outline);
+  border-radius: 6px;
+  padding: 1.5rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.dossier-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--outline-variant);
+  letter-spacing: 0.08em;
+}
+
+.dossier-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding-top: 1rem;
+}
+
+/* Segmented Gauge */
+.segmented-gauge-track {
+  display: flex;
+  gap: 3px;
+  height: 10px;
+  background: var(--surface-container-lowest);
+  border: 1px solid var(--outline-variant);
+  border-radius: 2px;
+  padding: 1px;
+}
+
+.gauge-segment {
+  flex: 1;
+  background: rgba(61, 214, 109, 0.15);
+  border-radius: 1px;
+  transition: background 0.3s ease;
+}
+
+.gauge-segment.segment-lit {
+  background: var(--primary);
+  box-shadow: 0 0 6px rgba(61, 214, 109, 0.6);
+}
+
+/* Status Alert Pill */
+.status-alert-pill {
+  padding: 8px 12px;
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pill-healthy {
+  background: rgba(61, 214, 109, 0.08);
+  border: 1px solid rgba(61, 214, 109, 0.4);
+  color: var(--primary);
+}
+
+.pill-healthy .alert-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--primary);
+}
+
+.pill-diseased {
+  background: rgba(255, 107, 122, 0.08);
+  border: 1px solid rgba(255, 107, 122, 0.4);
+  color: var(--tertiary);
+}
+
+.pill-diseased .alert-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--tertiary);
+  animation: statusDotPulse 1.8s ease-in-out infinite;
+}
+
+/* Differential Distribution */
+.differential-dist-box {
+  background: var(--surface-container);
+  border: 1px solid var(--outline-variant);
+  border-radius: 4px;
+  padding: 1rem;
+}
+
+.diff-bar-bg {
+  width: 100%;
+  height: 5px;
+  background: var(--surface-container-lowest);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.diff-bar-fill {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 0.4s ease;
+}
+
+.fill-primary {
+  background: var(--primary);
+}
+
+.fill-muted {
+  background: var(--ash-500);
+}
+
+/* Empty Viewport Placeholder State */
+.viewport-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface-container-lowest);
+}
+
+.empty-viewport-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  padding: 2rem;
+  text-align: center;
+  border: 1px dashed var(--outline-variant);
+  border-radius: 4px;
+  margin: 12px;
+  background: rgba(14, 18, 22, 0.4);
+  transition: all 0.25s ease;
+}
+
+.empty-viewport-cta:hover,
+.empty-viewport-cta:focus-visible {
+  border-color: var(--primary);
+  background: rgba(61, 214, 109, 0.04);
+  outline: none;
+}
+
+/* Control Remove Button */
+.ctrl-remove-btn {
+  background: transparent;
+  border: 1px solid var(--outline-variant);
+  border-radius: 3px;
+  padding: 7px 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.ctrl-remove-btn:hover {
+  border-color: var(--tertiary);
+  color: var(--tertiary);
+  background: rgba(255, 107, 122, 0.08);
+}
+
+/* Retry Button in Error Banner */
+.retry-btn {
+  background: transparent;
+  border: none;
+  color: var(--primary);
+  cursor: pointer;
+  padding: 0 4px;
+  text-decoration: underline;
+  transition: color 0.2s ease;
+}
+
+.retry-btn:hover {
+  color: var(--secondary);
+}
+
+/* Dossier Navigation Action Row */
+.dossier-actions-row {
+  margin-top: 1rem;
+}
+
+.open-dossier-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 10px 16px;
+  background: var(--surface-container-high);
+  border: 1px solid var(--outline);
+  border-radius: 4px;
+  color: var(--on-surface);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.open-dossier-btn:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  background: var(--surface-container-highest);
+  box-shadow: 0 0 16px rgba(61, 214, 109, 0.15);
+}
+
+/* Awaiting Inference State Card */
+.awaiting-card {
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+}
+
+.awaiting-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2.5rem 1.5rem;
+  text-align: center;
+}
+
+.awaiting-cta-btn {
+  margin-top: 1.5rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: var(--primary);
+  color: var(--surface-container-lowest);
+  border: none;
+  border-radius: 4px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 0 14px rgba(61, 214, 109, 0.25);
+}
+
+.awaiting-cta-btn:hover:not(:disabled) {
+  background: var(--secondary);
+  box-shadow: 0 0 20px rgba(162, 226, 52, 0.4);
+  transform: translateY(-1px);
+}
+
+.awaiting-cta-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+

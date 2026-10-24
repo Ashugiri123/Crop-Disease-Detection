@@ -1,0 +1,94 @@
+/* ============================================================
+   DISEASE CARD — Charcoal & Ash Botanical Card
+   ============================================================ */
+
+.disease-item-card {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 180px;
+  border-radius: 6px;
+  border: 1px solid var(--outline-variant);
+  background: var(--surface-container-low);
+  transition: all 0.2s ease;
+}
+
+.disease-item-card:hover {
+  transform: translateY(-2px);
+  background: var(--surface-container);
+  border-color: var(--outline);
+  box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.8);
+}
+
+.is-healthy-card:hover {
+  border-color: rgba(61, 214, 109, 0.4);
+}
+
+.is-disease-card:hover {
+  border-color: rgba(162, 226, 52, 0.4);
+}
+
+.card-top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  letter-spacing: 0.08em;
+}
+
+.crop-tag {
+  font-weight: 700;
+}
+
+.latin-tag {
+  font-size: 8.5px;
+}
+
+.spec-id-badge {
+  font-weight: 500;
+}
+
+.card-mid-body {
+  margin: 6px 0 14px;
+}
+
+.disease-title {
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: var(--on-surface);
+  line-height: 1.2;
+}
+
+.disease-desc-text {
+  line-height: 1.5;
+}
+
+.card-bottom-row {
+  display: flex;
+  align-items: center;
+  margin-top: auto;
+  padding-top: 10px;
+  border-top: 1px solid var(--outline-variant);
+}
+
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 8px;
+  border-radius: 3px;
+  letter-spacing: 0.08em;
+}
+
+.pill-healthy {
+  background: rgba(61, 214, 109, 0.08);
+  border: 1px solid rgba(61, 214, 109, 0.35);
+  color: var(--primary);
+}
+
+.pill-diseased {
+  background: rgba(162, 226, 52, 0.08);
+  border: 1px solid rgba(162, 226, 52, 0.35);
+  color: var(--secondary);
+}

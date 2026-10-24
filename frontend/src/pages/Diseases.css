@@ -1,0 +1,270 @@
+/* ============================================================
+   DISEASE EXPLORER — Charcoal & Ash Botanical Compendium
+   ============================================================ */
+
+.stitch-diseases-page {
+  padding: 3rem 0 5rem;
+  position: relative;
+  z-index: 10;
+}
+
+.diseases-header-block {
+  max-width: 48rem;
+  margin-bottom: 2.5rem;
+}
+
+.diseases-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--primary);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.diseases-title {
+  font-family: var(--font-headline);
+  font-size: clamp(2rem, 3.8vw, 3rem);
+  font-weight: 400;
+  color: var(--on-surface);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+.diseases-desc {
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: var(--on-surface-variant);
+  margin-top: 0.75rem;
+  line-height: 1.6;
+}
+
+/* Controls Panel */
+.diseases-controls-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  background: var(--surface-container-low);
+  border: 1px solid var(--outline);
+  border-radius: 6px;
+  margin-bottom: 1.25rem;
+}
+
+@media (min-width: 768px) {
+  .diseases-controls-panel {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.search-slot {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.search-slot-icon {
+  position: absolute;
+  left: 12px;
+  color: var(--ash-400);
+  font-size: 20px;
+  pointer-events: none;
+}
+
+.search-slot-input {
+  width: 100%;
+  padding: 10px 70px 10px 42px;
+  background: var(--surface-container-lowest);
+  border: 1px solid var(--outline-variant);
+  border-radius: 4px;
+  color: var(--on-surface);
+  font-family: var(--font-body);
+  font-size: 13px;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+
+.search-slot-input:focus {
+  border-color: var(--secondary);
+}
+
+.search-clear-btn {
+  position: absolute;
+  right: 10px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--ash-400);
+  padding: 3px 7px;
+  border-radius: 2px;
+  background: var(--surface-container);
+  border: 1px solid var(--outline-variant);
+  cursor: pointer;
+}
+
+.search-clear-btn:hover {
+  color: var(--on-surface);
+  border-color: var(--outline);
+}
+
+.severity-filter-toggles {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.severity-btn {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  padding: 6px 12px;
+  border-radius: 3px;
+  background: var(--surface-container);
+  border: 1px solid var(--outline-variant);
+  color: var(--on-surface-variant);
+  transition: all 0.15s ease;
+  cursor: pointer;
+}
+
+.severity-btn:hover {
+  border-color: var(--outline);
+  color: var(--on-surface);
+}
+
+.severity-btn.active {
+  background: var(--surface-container-highest);
+  color: var(--primary);
+  border-color: var(--primary);
+  box-shadow: 0 0 10px -2px rgba(61, 214, 109, 0.4);
+}
+
+/* Crop Pills Scroll */
+.crop-pills-wrap {
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1.5rem;
+  scrollbar-width: thin;
+}
+
+.crop-pills-row {
+  display: flex;
+  gap: 0.5rem;
+  width: max-content;
+}
+
+.crop-pill {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  padding: 6px 14px;
+  border-radius: 4px;
+  background: var(--surface-container-low);
+  border: 1px solid var(--outline-variant);
+  color: var(--on-surface-variant);
+  transition: all 0.15s ease;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.crop-pill:hover {
+  border-color: var(--outline);
+  color: var(--on-surface);
+}
+
+.crop-pill.active {
+  background: var(--surface-container);
+  border-color: var(--secondary);
+  color: var(--secondary);
+  box-shadow: 0 0 12px -3px rgba(162, 226, 52, 0.35);
+}
+
+/* Catalog Meta Strip */
+.catalog-meta-strip {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  background: var(--surface-container);
+  border: 1px solid var(--outline-variant);
+  border-radius: 4px;
+  margin-bottom: 1.5rem;
+  font-family: var(--font-mono);
+  font-size: 10px;
+}
+
+.catalog-counter {
+  color: var(--ash-400);
+  letter-spacing: 0.08em;
+}
+
+.counter-highlight {
+  color: var(--primary);
+}
+
+.reset-filters-btn {
+  color: var(--secondary);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* Diseases Grid */
+.diseases-catalog-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .diseases-catalog-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .diseases-catalog-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Empty State */
+.diseases-empty-state {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: var(--surface-container-low);
+  border: 1px dashed var(--outline);
+  border-radius: 6px;
+  margin-top: 1rem;
+}
+
+.empty-icon {
+  font-size: 36px;
+  color: var(--ash-400);
+  margin-bottom: 0.75rem;
+}
+
+.empty-title {
+  font-family: var(--font-headline);
+  font-size: 1.5rem;
+  color: var(--on-surface);
+  margin-bottom: 0.5rem;
+}
+
+.empty-desc {
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: var(--on-surface-variant);
+  margin-bottom: 1.5rem;
+}
+
+.empty-reset-cta {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  padding: 8px 16px;
+  background: var(--primary);
+  color: var(--on-primary);
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+}
