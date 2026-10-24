@@ -41,10 +41,14 @@ pnpm-debug.log*
 .ipynb_checkpoints/
 */.ipynb_checkpoints/*
 
-# Datasets and Archives (protect against accidental dataset commits)
-dataset/
-datasets/
-data/
+# Datasets and Archives (protect against accidental dataset commits at repository root or ML/)
+/dataset/
+/datasets/
+/data/
+ML/data/
+ML/dataset/
+ML/datasets/
+!frontend/src/data/
 *.zip
 *.tar
 *.tar.gz

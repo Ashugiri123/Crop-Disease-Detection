@@ -139,10 +139,14 @@ pnpm-debug.log*
 .ipynb_checkpoints/
 */.ipynb_checkpoints/*
 
-# Datasets and Archives
-dataset/
-datasets/
-data/
+# Datasets and Archives (anchored to root or ML/ to avoid ignoring frontend/src/data/)
+/dataset/
+/datasets/
+/data/
+ML/data/
+ML/dataset/
+ML/datasets/
+!frontend/src/data/
 *.zip
 *.tar
 *.tar.gz
